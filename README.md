@@ -71,6 +71,9 @@ Keyword,Site1.com,Site2.com,Site3.com
 - **Keyword:** Contains the search term.
 - **Site1.com, Site2.com, ...:** Columns with website URLs. SEOberry will extract the domain and determine its rank in the search results.
 
+# Acknowledgments
+A special thanks to Reza Najibi for the valuable idea and for her assistance in developing and writing this module. Your support and collaboration are greatly appreciated!
+
 ## Contributing
 
 Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/hamidrezafarzin/SEOberry/issues) if you want to contribute.
