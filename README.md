@@ -56,6 +56,9 @@ seoberry --example-header
 python -m seoberry.cli -i my_keywords.csv -o my_results.csv
 ```
 
+# Attention (captcha)  !
+After every 100 searches, you will need to solve a Google captcha. Once you have solved the captcha, please press the Enter key in the terminal that is open.
+
 ## CSV Format
 
 Your input CSV file **must** have a column named `Keyword`. All additional columns should contain website addresses whose rankings you want to track.
