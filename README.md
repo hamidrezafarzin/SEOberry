@@ -50,14 +50,21 @@ You can also print an example of the required CSV header format by running:
 seoberry --example-header
 ```
 
+help command :
+
+```bash
+seoberry --help
+```
+
 ### Example Command
 
 ```bash
 python -m seoberry.cli -i my_keywords.csv -o my_results.csv
 ```
 
+
 # Attention (captcha)  !
-After every 100 searches, you will need to solve a Google captcha. Once you have solved the captcha, please press the Enter key in the terminal that is open.
+After every 100 searches, Google usually triggers a captcha that you need to solve. To avoid frequent interruptions, it's best to run searches in batches of 90 to 100 to minimize captcha challenges. **Once you solve the captcha, press the Enter key in the open terminal.**
 
 ## CSV Format
 
@@ -75,7 +82,7 @@ Keyword,Site1.com,Site2.com,Site3.com
 - **Site1.com, Site2.com, ...:** Columns with website URLs. SEOberry will extract the domain and determine its rank in the search results.
 
 # Acknowledgments
-A special thanks to Reza Najibi for the valuable idea and for her assistance in developing and writing this module. Your support and collaboration are greatly appreciated!
+Special thanks to **Reza Najibi (SEO Specialist)** for his insightful idea and invaluable assistance in developing and refining this module. Your support and collaboration have been truly appreciated!
 
 ## Contributing
 
