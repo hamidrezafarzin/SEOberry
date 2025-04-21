@@ -50,7 +50,6 @@ def main():
 
     # Create the WebDriver instance
     driver = webdriver.Chrome()
-    driver.implicitly_wait(10)
     
     try:
         scraper = GoogleScraper(driver)

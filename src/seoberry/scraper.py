@@ -39,14 +39,14 @@ class GoogleScraper:
         Scrapes Google search result links and extracts their domains in order.
         """
         try:
-            WebDriverWait(self.driver, 5).until(
+            WebDriverWait(self.driver, 2).until(
                 EC.presence_of_all_elements_located((By.XPATH, "//a[.//h3]"))
             )
         except TimeoutException as e:
             if "captcha" in self.driver.page_source.lower() or "unusual traffic" in self.driver.page_source.lower():
                 logging.warning("Captcha detected during scraping. Waiting for you to solve it...")
                 self.wait_for_captcha()
-                WebDriverWait(self.driver, 5).until(
+                WebDriverWait(self.driver, 2).until(
                     EC.presence_of_all_elements_located((By.XPATH, "//a[.//h3]"))
                 )
             else:
@@ -67,13 +67,12 @@ class GoogleScraper:
         Clicks on the Google consent button if present.
         """
         try:
-            consent_button = WebDriverWait(self.driver, 5).until(
+            consent_button = WebDriverWait(self.driver, 2).until(
                 EC.element_to_be_clickable(
                     (By.XPATH, "//*[contains(text(),'I agree') or contains(text(),'\\u0642\\u0628\\u0648\\u0644') or contains(text(),'\\u0645\\u0648\\u0627\\u0641\\u0642\\u0645')]")
                 )
             )
             consent_button.click()
-            time.sleep(0.5)
         except Exception:
             pass
 
@@ -85,13 +84,13 @@ class GoogleScraper:
         self.handle_google_consent()
 
         try:
-            search_box = WebDriverWait(self.driver, 5).until(
+            search_box = WebDriverWait(self.driver, 2).until(
                 EC.element_to_be_clickable((By.NAME, "q"))
             )
         except TimeoutException:
             logging.error("Search box not found (captcha overlay might be present). Please solve any captcha manually, then press Enter...")
             input()
-            search_box = WebDriverWait(self.driver, 5).until(
+            search_box = WebDriverWait(self.driver, 2).until(
                 EC.element_to_be_clickable((By.NAME, "q"))
             )
 
@@ -106,11 +105,11 @@ class GoogleScraper:
         domains_second = []
 
         try:
-            next_button = WebDriverWait(self.driver, 5).until(
+            next_button = WebDriverWait(self.driver, 2).until(
                 EC.presence_of_element_located((By.CLASS_NAME, "oeN89d"))
             )
             if next_button.is_displayed() and next_button.size.get('height', 0) > 0 and next_button.size.get('width', 0) > 0:
-                next_button = WebDriverWait(self.driver, 5).until(
+                next_button = WebDriverWait(self.driver, 2).until(
                     EC.element_to_be_clickable((By.CLASS_NAME, "oeN89d"))
                 )
                 next_button.click()
@@ -155,6 +154,8 @@ class CSVProcessor:
         website_domains = {website: self.scraper.get_domain(website) for website in websites}
 
         for row in rows:
+            # Extend row to match header length if it's shorter
+            row.extend([''] * (len(header) - len(row)))
             keyword = row[0].strip()
             logging.info(f"Processing keyword: {keyword}")
             domain_ranks = self.scraper.search_and_get_domain_ranks(keyword)
@@ -177,7 +178,6 @@ class CSVProcessor:
 def main():
     # Create the WebDriver instance (could be injected from outside for easier testing)
     driver = webdriver.Chrome()
-    driver.implicitly_wait(10)
     try:
         scraper = GoogleScraper(driver)
         processor = CSVProcessor(scraper)
