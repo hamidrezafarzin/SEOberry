@@ -2,8 +2,7 @@ import argparse
 import logging
 import os
 import sys
-from selenium import webdriver
-from seoberry.scraper import GoogleScraper, CSVProcessor
+from seoberry.scraper import GoogleScraper, CSVProcessor, create_driver
 
 EXAMPLE_HEADER = """Keyword,Site1.com,Site2.com,Site3.com
 "best laptops","10","5","2"
@@ -49,7 +48,7 @@ def main():
         sys.exit(1)
 
     # Create the WebDriver instance
-    driver = webdriver.Chrome()
+    driver = create_driver()
     
     try:
         scraper = GoogleScraper(driver)
