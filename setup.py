@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="SEOberry",
-    version="1.0.4",
+    version="1.0.5",
     package_dir={"": "src"},
     packages=find_packages(where="src"),
     author="Hamidreza Farzin",
@@ -14,7 +14,8 @@ setup(
     license="MIT",
     install_requires=[
         "selenium>=4.0.0",
-        "tldextract>=3.0.0"
+        "tldextract>=3.0.0",
+        "requests>=2.0.0"
     ],
     python_requires=">=3.8",
     entry_points={
