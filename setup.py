@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="SEOberry",
-    version="1.0.5",
+    version="1.0.6",
     package_dir={"": "src"},
     packages=find_packages(where="src"),
     author="Hamidreza Farzin",
