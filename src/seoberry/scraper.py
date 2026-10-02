@@ -214,11 +214,11 @@ class GoogleScraper:
 
         try:
             next_button = WebDriverWait(self.driver, 2).until(
-                EC.presence_of_element_located((By.CLASS_NAME, "oeN89d"))
+                EC.presence_of_element_located((By.ID, "pnnext"))
             )
             if next_button.is_displayed() and next_button.size.get('height', 0) > 0 and next_button.size.get('width', 0) > 0:
                 next_button = WebDriverWait(self.driver, 2).until(
-                    EC.element_to_be_clickable((By.CLASS_NAME, "oeN89d"))
+                    EC.element_to_be_clickable((By.ID, "pnnext"))
                 )
                 next_button.click()
                 self.wait_for_captcha()
